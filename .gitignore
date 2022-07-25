@@ -3,6 +3,6 @@ node_modules/*
 **/bower_components/*
 .DS_Store
 config.js
-http-req/*
+
 **/*.bak
 *.bak

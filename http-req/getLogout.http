@@ -1,0 +1,7 @@
+GET http://localhost:8000/api/logout HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY1ODcxNzIxOSwiZXhwIjoxNjU4NzIwODE5LCJuYmYiOjE2NTg3MTcyMTksImp0aSI6Imx0cFlxWU9LakJNdDJaRE0iLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.4rk8GKNKY9gJzygz_IHSX6PZDkXsKtvFDqWxvAQ_Fto"
+}
