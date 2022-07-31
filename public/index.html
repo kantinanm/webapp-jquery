@@ -21,27 +21,35 @@
     <h1>Hello, Hoola</h1>
     <!---->
 
-    <h1>CSS Buttons</h1>
-    <button class="ui-button ui-widget ui-corner-all" id="btnRequest">A button element</button>
-
 
 
     <div id="tabs">
-        <ul>
-          <li><a href="#tabs-1">1-รอการทดสอบ</a></li>
-          <li><a href="#tabs-2">2-รายชื่อนิสิต</a></li>
-          <li><a href="#tabs-3">3-วิศวกรกำลังตรวจสอบผล</a></li>
-        </ul>
-        <div id="tabs-1">  
-          <div id="myDynamicTable1"></div> 
-        </div>
-        <div id="tabs-2">
-          <div id="myDynamicTable2"></div>
-        </div>
-        <div id="tabs-3">
-          <div id="myDynamicTable3"></div>
-        </div>
-    </div><!-- tabs-->
+      <ul>
+        <li><a href="#tabs-1">1-แบบฟอร์มลงทะเบียน</a></li>
+        <li><a href="#tabs-2">2-รายชื่อนิสิต(ALL)</a></li>
+        <li><a href="#tabs-3">3-ข้อมูลนิสิต</a></li>
+      </ul>
+      <div id="tabs-1">  
+        <form id="my-form">
+          <input type="text" id="txtStudentID" name="txtStudentID" placeholder="รหัสนิสิต" />
+          <br/>
+          <input type="text" id="txtName" name="txtName" placeholder="ชื่อ-นามสกุล" />
+          <br/>
+          <input type="text" id="txtEmail" name="txtEmail" placeholder="Email" />
+          <br/>
+          <input type="password" id="txtPassword" name="txtPassword" placeholder="รหัสผ่าน" />
+          <br/>
+          <input type="button" id="btnSubmit" value="Submit"/>
+      </form>
+      </div>
+      <div id="tabs-2">
+        <button class="ui-button ui-widget ui-corner-all" id="btnRequest">Load</button>
+        <div id="myDynamicTable"></div>
+      </div>
+      <div id="tabs-3">
+      
+      </div>
+  </div><!-- tabs-->
     
     
 <script type="text/javascript">
@@ -68,16 +76,16 @@
           // url from where we want to get the data
           $.ajax({
             method: "GET",
-            url: "https://tools.ecpe.nu.ac.th/network/api/students",
+            url: "http://localhost:8000/api/students",
             dataType : 'json',
             headers: { 
               'Content-Type': 'application/json',
               "Accepts": "application/json",
-              "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjU4NzQ5MjMzLCJleHAiOjE2NTg3NTI4MzMsIm5iZiI6MTY1ODc0OTIzMywianRpIjoiT2JDQ1ZMbno4RUxHY2xXRiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.gSoTKn7xjrIblaapWe8DDbsGo7VUVm0tcUILgRf0nG0",
+              "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY1OTIzNzgxNCwiZXhwIjoxNjU5MjQxNDE0LCJuYmYiOjE2NTkyMzc4MTQsImp0aSI6IlNkMFZhbjliVXdxR1gycHkiLCJzdWIiOjIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.wITlzoM3vSfEd0VFwe-lUmZxmYiXnZ3BglUEqcaRMTw",
             },
             success: function(data){
               console.log(data);
-              var tbName ="myDynamicTable2";
+              var tbName ="myDynamicTable";
               addTable(data,tbName);
 
               //alert("Done");
@@ -85,6 +93,28 @@
         });
 
         });
+
+         //btnSubmit
+        $('#btnSubmit').click( function(){
+          //console.log("Submit");
+          $.ajax({
+            method: "POST",
+            url: "https://tools.ecpe.nu.ac.th/network/api/register",
+            dataType : 'json',
+            headers: { 
+              'Content-Type': 'application/json',
+              "Accepts": "application/json",
+            },
+            data:JSON.stringify( { "name": $('#txtName').val(), "student_id": $('#txtStudentID').val(), "email": $('#txtEmail').val(), "password": $('#txtPassword').val() } ),
+            success: function(data){
+              console.log(data);
+             
+            }
+          });
+
+        });
+
+
 
      });
 </script>

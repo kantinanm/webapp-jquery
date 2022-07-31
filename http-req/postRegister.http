@@ -1,9 +1,8 @@
-POST https://tools.ecpe.nu.ac.th/network/api/register HTTP/1.1
+POST http://localhost:8000/api/register HTTP/1.1
 content-type: application/json
 
 {
-    "name":"MAKMEE K.",
-    "student_id":"47311659",
-    "email":"icesit2015@nu.ac.th",
-    "password":"123456789"
+    "name":"",
+    "email":"@nu.ac.th",
+    "password":""
 }
