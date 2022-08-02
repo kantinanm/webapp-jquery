@@ -25,6 +25,8 @@ app.use(
   express.static(__dirname + "/node_modules/jquery-ui/dist/")
 );
 
+
+
 /** remove fix route and use path solution **/
 /**
   app.get('/', function(req, res) {
